@@ -135,6 +135,8 @@
 
      
     .menu-link {
+    position: relative;
+    display: block;
     padding: 24px 0;
     font-weight: 500;
     font-size: 16px;
@@ -144,6 +146,8 @@
     transition: color var(--transition-dur-func);
     }
 
+   
+
     .menu-link:hover,
     .menu-link:focus {
         color: var(--text-color);
@@ -151,44 +155,37 @@
 
     .menu-link:active {
         color: var(--primary-color);
+
     }
+
+    .menu-link.current-page::after {
+        content: '';
+        position: absolute;
+        display: block;
+        bottom: 0;
+        right: 0;        
+        margin-top: 24px;
+        width: 100%;
+        height: 4px;
+        background: #404BBF;
+        border-radius: 2px;
+    }
+
     
     .contact-list {
         margin-left: auto;
     }
 
-    .menu-link::after{
-        content: '';
-        display: block;
-        width: 100%;
-        height: 4px;
-        background-color: #404BBF;
-        border-radius: 2px;
-        margin: 0 auto;
-        margin-top: 24px;
-        opacity: 0;
-        
-        
-    }
-
-    .menu-link:hover::after,
-    menu-link:focus::after{
-        opacity: 1;
-
-    }
-
-    
-
-    
    
-    
-    .contact-mail {
+     .contact-mail {
     
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.02em;
     color: var(--text-color);
+    transition: color var(--transition-dur-func);
     }
+
     .contact-mail:hover,
     .contact-mail:focus {
         color: var(--primary-color);
@@ -270,7 +267,7 @@
 
     /* =====================================================FEATURES=============================================== */
 
-    .list {
+    .features-list{
         display: flex;
        
     }
@@ -736,7 +733,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        overflow: auto;
+        overflow: hidden;
         transform: translate(0, 100%);
         transition: transform var(--transition-dur-func);
         padding: 40px 32px 164px 32px;
@@ -752,12 +749,13 @@
 
     }
 
-    .img-wrapper-link:hover .overlay,
-    .img-wrapper-link:focus .overlay
-    {
-        transform: translate(0, 0);
+    .img-item:hover .overlay {
+    transform: translate(0, 0);
     }
 
+    .img-wrapper-link:focus .overlay{
+        transform: translate(0, 0);
+    }
 
 
 
@@ -770,6 +768,9 @@
         width: 100%;
         height: 100%;
         background-color: rgba(46, 47, 66, 0.4);
+        opacity: 1;
+        transition: opacity var(--transition-dur-func);
+
     }
 
     .backdrop.is-hidden {
@@ -777,17 +778,27 @@
         pointer-events: none;
     }
 
+    .backdrop.is-hidden .modal{
+      transform: translate(-50%, -50%) scale(0.2);
+      
+      
+    }
+
     .modal {
          position: absolute;
          top: 50%;
          left: 50%;
-         transform: translate(-50%, -50%);
-
-        width: 408px;
-        height: 576px;
-        background-color: #FCFCFC;
-
+         transform: translate(-50%, -50%) scale(1);
+         width: 408px;
+         height: 576px;
+         background-color: #FCFCFC;
+         transition: transform var(--transition-dur-func);
+         
+        
     }
+
+    
+    
 
     .modal-close-btn {
         position: absolute;
